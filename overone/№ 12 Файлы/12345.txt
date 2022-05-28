@@ -1,0 +1,8 @@
+Minsk
+Europe
+1
+56
+12
+101
+Solar
+1, 8, 'Tokio', 'Minsk', 'Rome', 5, 8, 3, 'Sydney', 6
