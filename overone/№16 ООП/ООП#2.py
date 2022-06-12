@@ -166,3 +166,61 @@
 # 2.  Реализуйте метод buy_house(), который будет проверять, что у человека достаточно денег
 # для покупки, и совершать сделку. Если денег слишком мало - нужно вывести предупреждение в
 # консоль. Параметры метода: ссылка на дом и размер скидки
+
+
+class Human:
+    default_name = 'A'
+    default_age = 'B'
+
+    def __init__(self, name=default_name, age=default_age):
+        self.name = name
+        self.age = age
+        self.__house = None
+        self.__money = 0
+
+    def info(self):
+        print(self.name, self.__money, self.__house, self.age)
+
+    @staticmethod
+    def default_info():
+        print(Human.default_name, Human.default_age)
+
+    def earn_money(self, plus):
+        self.__money += plus
+        print(self.__money)
+
+    def __make_deal(self, house, price):
+        self.__money -= price
+        self.__house = house
+
+    def by_house(self, house, discount):
+        price = house.final_price(discount)
+        if self.__money >= price:
+            self.__make_deal(house, price)
+            print('Поздравляем')
+        else:
+            print("No money")
+
+class House:
+    def __init__(self, area, price):
+        self._area = area
+        self._price = price
+
+    def final_price(self, discount):
+        final_price = self._price * (100 - discount) / 100
+        print(final_price)
+        return final_price
+
+
+class SmallHouse(House):
+    pl = 40
+
+    def __init__(self, price):
+        super().__init__(SmallHouse.pl, price)
+
+human = Human('Mark', 25)
+human.info()
+human.earn_money(5000)
+human.info()
+smoll_house = SmallHouse(5000)
+human.by_house(smoll_house, 5)
